@@ -10,6 +10,7 @@ from msrest.authentication import BasicAuthentication
 @dataclass
 class WorkItem:
     id: int
+    type: str
     title: str
     assigned_to: str
     description: str
@@ -18,9 +19,19 @@ class WorkItem:
     def from_rest_object(rest_work_item: RESTWorkItem) -> "WorkItem":
         return WorkItem(
             id=rest_work_item.id,
+            type=rest_work_item.fields.get("System.WorkItemType"),
             title=rest_work_item.fields.get("System.Title"),
             assigned_to=rest_work_item.fields.get("System.AssignedTo", {}).get("displayName", "Unassigned"),
             description=rest_work_item.fields.get("System.Description", "No description available"),
+        )
+
+    def __str__(self) -> str:
+        return (
+            f"Work item #{self.id}\n"
+            f"Type: {self.type}\n"
+            f"Title: {self.title}\n"
+            f"Assigned to: {self.assigned_to}\n"
+            f"Description:\n{self.description}\n"
         )
 
 
