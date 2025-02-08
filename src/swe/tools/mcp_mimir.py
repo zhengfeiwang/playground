@@ -9,7 +9,7 @@ mcp = FastMCP("Get Azure DevOps work item")
 def get_work_item(work_item_id: int) -> str:
     mimir = Mimir()
     work_item = mimir.get_work_item(work_item_id)
-    return f"Work item {work_item.id} has title {work_item.title} and is assigned to {work_item.assigned_to}, description: {work_item.description}."
+    return str(work_item)
 
 
 if __name__ == "__main__":
