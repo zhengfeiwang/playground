@@ -1,5 +1,6 @@
 from mcp.server.fastmcp import FastMCP
 
+from mimir import Mimir
 from raven import Raven
 
 mcp = FastMCP("Get Azure DevOps work item")
@@ -10,6 +11,12 @@ def get_work_item(work_item_id: int) -> str:
     raven = Raven()
     work_item = raven.get_work_item(work_item_id)
     return str(work_item)
+
+
+@mcp.tool()
+def plan(task: str) -> str:
+    mimir = Mimir()
+    return mimir.plan(task)
 
 
 if __name__ == "__main__":
