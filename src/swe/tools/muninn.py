@@ -35,7 +35,7 @@ class WorkItem:
         )
 
 
-class Mimir:
+class Muninn:
     def __init__(self): 
         if not os.getenv("AZURE_DEVOPS_PAT"):
             load_dotenv()
