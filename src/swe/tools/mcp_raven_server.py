@@ -1,14 +1,14 @@
 from mcp.server.fastmcp import FastMCP
 
-from muninn import Muninn
+from raven import Raven
 
 mcp = FastMCP("Get Azure DevOps work item")
 
 
 @mcp.tool()
 def get_work_item(work_item_id: int) -> str:
-    muninn = Muninn()
-    work_item = muninn.get_work_item(work_item_id)
+    raven = Raven()
+    work_item = raven.get_work_item(work_item_id)
     return str(work_item)
 
 
