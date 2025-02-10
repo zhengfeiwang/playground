@@ -106,6 +106,8 @@ class Raven:
         )
         threads = []
         for rest_thread in rest_threads:
+            if rest_thread.status != "active":
+                continue
             thread = PullRequestThread.from_rest_object(rest_thread)
             if thread is not None:
                 threads.append(thread)
